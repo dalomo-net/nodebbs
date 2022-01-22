@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="theme-color" content="#000">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="google" content="notranslate">
+    <title>nodebbs - dalomo</title>
+</head>
+
+<body>
+    <h1>nodebbs</h1>
+    <p><a href="https://dalomo.net/blog/">blog</a></p>
+
+    <form action="msg" method="POST">
+
+        <li>
+            <label for="name">名前:</label>
+            <input type="text" id="name" name="user_name">
+        </li>
+        <li>
+            <label for="msg">内容:</label>
+            <textarea id="msg" name="user_message"></textarea>
+        </li>
+        <li class="button">
+            <button type="submit">送信</button>
+        </li>
+        </ul>
+
+    </form>
+
+    <hr>
+
+    <div id=contents>
+
+    </div>
+
+    <script src="client.js">
+
+    </script>
+
+</body>
+
+</html>
