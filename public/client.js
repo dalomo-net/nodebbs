@@ -35,10 +35,12 @@ function onClickeditbtn() {
     let btn = document.getElementById('edit-' + id)
     btn.innerText = '更新'
     btn.name = 'udbtn'
+    btn.removeEventListener('click', onClickeditbtn)
+    btn.addEventListener('click', onClickupdate)
 }
 
-function update() {
-    let id = event.target.id.slice(5)
+function onClickupdate() {
+    let id = this.id.slice(5)
     let textarea = document.getElementById(id)
     let msg = textarea.value
     let data = {
@@ -59,7 +61,14 @@ function update() {
 
             let btn = document.getElementById('edit-' + id)
             btn.innerText = '編集'
-            btn.setAttribute('onclick', 'editbtn()');
+            btn.name = 'editbtn'
+
+            let editbtn = document.getElementsByName('editbtn')
+
+            for (const eb of editbtn) {
+                eb.removeEventListener('click', onClickeditbtn)
+                eb.addEventListener('click', onClickeditbtn)
+            }
         })
 }
 
@@ -73,20 +82,3 @@ fetch('https://dalomo.net/nodebbs/msg')
             eb.addEventListener('click', onClickeditbtn)
         }
     })
-
-
-
-    // .addEventLisner('click', () => {
-    //     let id = this.id.slice(5)
-    //     let p = document.getElementById(id)
-    //     let msg = p.innerText
-    //     let textarea = document.createElement('textarea')
-    //     textarea.value = msg
-    //     textarea.id = id
-    //     p.replaceWith(textarea)
-
-    //     let btn = document.getElementById('edit-' + id)
-    //     btn.innerText = '更新'
-    //     btn.name = 'udbtn'
-    //     // btn.setAttribute('onclick', 'update()');
-    // })
