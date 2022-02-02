@@ -6,7 +6,7 @@ function contents(data) {
         <p id="${row['id']}">${row['contents']['msg']}</p>
         <p><button type="button" id="edit-${row['id']}" name="editbtn">編集</button>
             名前: ${row['contents']['name']} 日時: ${row['contents']['dt']}
-            <button type="button" id="del-${row['id']}" onclick="delbtn()">削除</button></p>
+            <button type="button" id="del-${row['id']}" name="delbtn">削除</button></p>
         <hr>
         `
     }
@@ -15,8 +15,8 @@ function contents(data) {
     contents.innerHTML = s
 }
 
-function delbtn() {
-    let id = event.target.id.slice(4)
+function onClickdelbtn() {
+    let id = this.id.slice(4)
     fetch('https://dalomo.net/nodebbs/msg/' + id, {
         method: 'DELETE'
     })
@@ -77,8 +77,14 @@ fetch('https://dalomo.net/nodebbs/msg')
     .then(data => contents(data))
     .then(e => {
         let editbtn = document.getElementsByName('editbtn')
+        let delbtn = document.getElementsByName('delbtn')
 
         for (const eb of editbtn) {
             eb.addEventListener('click', onClickeditbtn)
         }
+
+        for (const db of delbtn) {
+            db.addEventListener('click', onClickdelbtn)
+        }
+
     })
